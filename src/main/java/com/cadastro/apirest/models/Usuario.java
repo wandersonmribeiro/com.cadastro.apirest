@@ -15,55 +15,36 @@ public class Usuario extends Pessoa {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@NotNull
 	private String nomeUsuario;
+	
 	@NotNull
 	private String senhaUsuario;
-	public long getId() {
+	
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNomeUsuario() {
 		return nomeUsuario;
 	}
+
 	public void setNomeUsuario(String nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
 	}
+
 	public String getSenhaUsuario() {
 		return senhaUsuario;
 	}
+
 	public void setSenhaUsuario(String senhaUsuario) {
 		this.senhaUsuario = senhaUsuario;
 	}
-	@Override
-	public long getCodigo() {
-		// TODO Auto-generated method stub
-		return super.getCodigo();
-	}
-	@Override
-	public void setCodigo(long codigo) {
-		// TODO Auto-generated method stub
-		super.setCodigo(codigo);
-	}
-	@Override
-	public String getNome() {
-		// TODO Auto-generated method stub
-		return super.getNome();
-	}
-	@Override
-	public void setNome(String nome) {
-		// TODO Auto-generated method stub
-		super.setNome(nome);
-	}
-	public Usuario() {
-		super();
-		
-		// TODO Auto-generated constructor stub
-	}
-	
-	
 }

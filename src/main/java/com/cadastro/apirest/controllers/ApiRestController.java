@@ -7,46 +7,48 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cadastro.apirest.models.Pessoa;
-import com.cadastro.apirest.repository.PessoaRepository;
+import com.cadastro.apirest.models.Usuario;
+import com.cadastro.apirest.repository.UsuarioRepository;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Api(value = "ApiRest Cadastros") 
 @RestController
-@RequestMapping("/apirest/cadastrar")
+@RequestMapping("/apirest/")
 public class ApiRestController {
+	
 	@Autowired
-	private PessoaRepository pr;
-
-	@ApiOperation(value = "Mostra lista de pessoas") //Diz ao Swagger que essa operação REST deve ser documentado
+	private UsuarioRepository ur;
+	
+	@ApiOperation(value = "Mostra lista de Usuario") //Diz ao Swagger que essa operação REST deve ser documentado	
 	@GetMapping(produces="application/json")
-	public @ResponseBody Iterable<Pessoa> listaConvenios(){
-		Iterable<Pessoa> listaConvenios = pr.findAll();
-		return listaConvenios;
+	public @ResponseBody Iterable<Usuario> listaUsuarios(){
+		Iterable<Usuario> listaUsuario = ur.findAll();
+		return listaUsuario;
 	}
 	
-	@ApiOperation(value = "Salva pessoa") //Diz ao Swagger que essa operação REST deve ser documentado
+	
+	@ApiOperation(value = "Salva Usuario") //Diz ao Swagger que essa operação REST deve ser documentado
 	@PostMapping()
-	public ResponseEntity<?> cadastroConvenio(@RequestBody @Valid Pessoa pessoa, BindingResult result){
+	public ResponseEntity<?> cadastroConvenio(@RequestBody @Valid Usuario usuario, BindingResult result){
 		if (result.hasErrors()) {
 			 return ResponseEntity.badRequest().body(result.getFieldError());
 		 }
-		pr.save(pessoa);
-		return ResponseEntity.ok(pessoa);
+		ur.save(usuario);
+		return ResponseEntity.ok(usuario);
 	}
 	
-	@ApiOperation(value = "Deleta pessoa") //Diz ao Swagger que essa operação REST deve ser documentado
+	@ApiOperation(value = "Deleta Usuario") //Diz ao Swagger que essa operação REST deve ser documentado
 	@DeleteMapping()
-	public Pessoa deletaConvenio(@RequestBody Pessoa pessoa){
-		pr.delete(pessoa);
-		return pessoa;
+	public Usuario deletaConvenio(@RequestBody Usuario usuario){
+		ur.delete(usuario);
+		return usuario;
 	}		
 }
